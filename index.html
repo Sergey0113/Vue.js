@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Заметки</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="./css/nullstyle.css">
+	<link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+	<div id="app" class="wrap">
+<div class="wrap-border">
+			<div class="header">
+				<div class="container header-container">
+					<div class="logo">Заметки :</div>
+					<div class="form">
+						<input type="text" class="checkbox" v-bind:value="valueinput" v-on:input="handlyInput" v-on:keypress.enter="addTask">
+						<button class="btn" v-on:click="addTask">Заметка</button>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<h2>
+					<span class="title">Запланированно</span>
+					<span class="mask-num">{{needDoList.length}}</span>
+				</h2>
+				<ul class="mask-list">
+					<li class="container-item" v-for="(mask, index) in needDoList" :key="mask.id">
+						<div>
+							<input  type="checkbox" class="checkbox" v-on:change="doCheck(index, 'need')">
+							<span class="todo-item">{{ mask.title }}</span>
+						</div>
+						<button class="btn-remove" v-on:click="removeMask(index, 'need')">Удалить</button>
+					</li>
+				</ul>
+				<h2>
+					<span class="title">Сделано</span>
+					<span class="mask-num">{{completeList.length}}</span>
+				</h2>
+				<ul class="mask-list complete-list">
+					<li class="container-item" v-for="(mask, index) in completeList" :key="mask.id">
+						<div>
+							<input class="checkbox" type="checkbox" v-on:change="doCheck(index, 'complete')" checked>
+							<span class="todo-item" >{{ mask.title }}</span>
+						</div>
+						<button class="btn-remove" v-on:click="removeMask(index, 'complete')">Удалить</button>
+					</li>
+				</ul>
+			</div>
+</div>
+	</div>
+
+
+
+
+
+
+
+
+
+	<script src="https://unpkg.com/vue@next"></script>
+	<script src="app.js"></script>
+</body>
+
+</html>
